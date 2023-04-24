@@ -29,8 +29,8 @@ export const TemperatureSlider: FC<Props> = ({ onChangeTemperature }) => {
       <input
         className="w-full ml-3"
         type="range"
-        min={0}
-        max={2}
+        min={0.2}
+        max={1.2}
         step={0.1}
         value={temperature}
         onChange={handleChange}
