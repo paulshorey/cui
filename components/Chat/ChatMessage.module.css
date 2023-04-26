@@ -1,3 +1,5 @@
 .prose {
-  max-width: calc(100vw - 336px);
+  @media (min-width: 801px) {
+    max-width: 100vw;
+  }
 }
