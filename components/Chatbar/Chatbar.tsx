@@ -22,6 +22,7 @@ import { Conversations } from './components/Conversations';
 
 import Sidebar from '../Sidebar';
 import ChatbarContext from './Chatbar.context';
+import styles from './Chatbar.module.css';
 import { ChatbarInitialState, initialState } from './Chatbar.state';
 
 import { v4 as uuidv4 } from 'uuid';

@@ -1,0 +1,40 @@
+.container {
+}
+.chatInput {
+}
+.bottomFloatingButton {
+  border: solid 1px orange;
+  border-radius: 50%;
+  display: none;
+}
+.floatingAboveTextarea {
+  bottom: 3rem;
+  opacity: 0.75 !important;
+  padding: 0;
+  height: 20px;
+  border: none;
+}
+.bottomInputs {
+}
+.bottomInputs .textarea {
+  height: 40px;
+  line-height: 40px;
+  padding: 0 0 0 1rem;
+  border-radius: 6px;
+  outline: none;
+}
+.bottomInputs .textarea:focus,
+.bottomInputs .textarea:focus-visible {
+  outline: solid 1px orange;
+}
+.bottomInputs .textarea:focus + button,
+.bottomInputs .textarea:focus-visible + button {
+  color: orange;
+  transform: scale(1.33);
+  margin: -0.11rem;
+}
+.bottomInputs .googleButton {
+  display: none;
+}
+.bottomInputs .submitButton {
+}

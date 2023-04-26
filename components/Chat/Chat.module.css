@@ -7,3 +7,6 @@
     width: calc(100% + 6px);
   }
 }
+.wFull {
+  width: 100vw;
+}
