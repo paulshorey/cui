@@ -1,0 +1,9 @@
+.container {
+}
+.fullHeight {
+  max-height: 99svh;
+  overflow-x: hidden;
+  @media (min-width: 1025px) {
+    width: calc(100% + 6px);
+  }
+}
