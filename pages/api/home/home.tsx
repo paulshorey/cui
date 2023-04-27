@@ -42,6 +42,7 @@ import { Navbar } from '@/components/Mobile/Navbar';
 import Promptbar from '@/components/Promptbar';
 
 import HomeContext from './home.context';
+import styles from './home.module.css';
 import { HomeInitialState, initialState } from './home.state';
 
 import { v4 as uuidv4 } from 'uuid';
@@ -398,24 +399,22 @@ const Home = ({
       </Head>
       {selectedConversation && (
         <main
-          className={`flex h-screen w-screen flex-col text-sm text-white dark:text-white ${lightMode}`}
+          className={
+            `flex flex-col text-sm text-white dark:text-white ${lightMode} ` +
+            styles.layoutContainer
+          }
         >
-          <div className="fixed top-0 w-full sm:hidden">
+          <div className="relative top-0 w-full sm:hidden">
             <Navbar
               selectedConversation={selectedConversation}
               onNewConversation={handleNewConversation}
             />
           </div>
 
-          <div
-            className="flex h-full w-full pt-[48px] sm:pt-0"
-            style={{ maxHeight: '99svh' }}
-          >
+          <div className={styles.layoutContent}>
             <Chatbar />
 
-            <div className="flex flex-1">
-              <Chat stopConversationRef={stopConversationRef} />
-            </div>
+            <Chat stopConversationRef={stopConversationRef} />
 
             <Promptbar />
           </div>

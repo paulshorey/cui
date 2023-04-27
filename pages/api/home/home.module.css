@@ -1,0 +1,8 @@
+.layoutContainer {
+  width: 100svw;
+  height: 100svh;
+}
+.layoutContent {
+  width: 100svw;
+  height: 100%;
+}

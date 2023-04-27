@@ -6,22 +6,34 @@
   top: 0;
   left: 0;
   z-index: 20;
-  opacity: 0.7;
+  opacity: 0.3;
 
   @media (min-width: 768px) {
-    display: none;
   }
 }
+
+.openButton,
 .closeButton {
   position: absolute;
-  top: 0.75rem;
+  top: 0.67rem;
   display: inline-block;
-  /* background: #202023; */
   z-index: 10000;
+  @media (min-width: 768px) {
+    top: 1rem;
+  }
 }
 .closeButton[data-side='right'] {
   right: 0.35rem;
+  @media (min-width: 768px) {
+    right: 0.5rem;
+  }
 }
 .closeButton[data-side='left'] {
   left: 0.35rem;
+  @media (min-width: 768px) {
+    left: 0.5rem;
+  }
+}
+.openButton {
+  z-index: 1;
 }

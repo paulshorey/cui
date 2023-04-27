@@ -425,6 +425,10 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
                   showSettings={showSettings}
                 />
 
+                <div className={styles.systemPrompt}>
+                  System prompt: {selectedConversation?.prompt}
+                </div>
+
                 {selectedConversation?.messages.map((message, index) => (
                   <ChatMessage
                     key={index}

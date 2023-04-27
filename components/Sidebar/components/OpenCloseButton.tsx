@@ -10,7 +10,6 @@ interface Props {
 export const CloseSidebarButton = ({ onClick: toggleOpen, side }: Props) => {
   return (
     <>
-      <div onClick={toggleOpen} className={styles.overlay}></div>
       <button
         data-side={side}
         onClick={toggleOpen}
@@ -18,6 +17,7 @@ export const CloseSidebarButton = ({ onClick: toggleOpen, side }: Props) => {
       >
         {side === 'right' ? <IconArrowBarRight /> : <IconArrowBarLeft />}
       </button>
+      <div onClick={toggleOpen} className={styles.overlay}></div>
     </>
   );
 };
@@ -26,11 +26,11 @@ export const OpenSidebarButton = ({ onClick, side }: Props) => {
   return (
     <button
       className={
-        `absolute top-2.5 ${
+        `fixed z-10 ${
           side === 'right' ? 'right-1' : 'left-3'
         } h-7 w-7 text-white hover:text-gray-400 dark:text-white dark:hover:text-gray-300 sm:top-0.5 sm:${
           side === 'right' ? 'right-2' : 'left-2'
-        } sm:h-8 sm:w-8 sm:text-neutral-700` + styles.openButton
+        } sm:h-8 sm:w-8 sm:text-neutral-700 ` + styles.openButton
       }
       onClick={onClick}
     >

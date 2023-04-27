@@ -1,6 +1,8 @@
 .container {
+  height: 100%;
 }
 .fullHeight {
+  position: relative;
   max-height: 99svh;
   overflow-x: hidden;
   @media (min-width: 1025px) {
@@ -9,4 +11,12 @@
 }
 .wFull {
   width: 100vw;
+}
+.systemPrompt {
+  position: relative;
+  padding: 22px 2rem 5px 3.25rem;
+  line-height: 14px;
+  margin: 0;
+  font-size: 12px;
+  color: black;
 }

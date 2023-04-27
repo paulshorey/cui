@@ -1,4 +1,13 @@
 .container {
+  position: absolute;
+  height: 100svh;
+  top: 0;
+}
+[data-side='left'].container {
+  left: 0;
+}
+[data-side='right'].container {
+  right: 0;
 }
 .topButtons button {
   height: 42px;
