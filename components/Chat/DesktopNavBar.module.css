@@ -1,0 +1,28 @@
+.navBarContainer {
+  position: relative;
+  @media (max-width: 1024px) {
+    display: none;
+  }
+}
+.navBar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 1.1rem;
+  align-items: center;
+}
+.navBar > span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+}
+.settingsPane {
+  position: absolute;
+  z-index: 1000;
+  padding: 10px 30px 20px;
+  border-radius: 8px;
+  width: 100%;
+  background: #333541;
+  box-shadow: 1px 11px 22px rgba(0, 0, 0, 0.33);
+}

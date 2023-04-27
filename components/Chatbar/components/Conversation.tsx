@@ -1,4 +1,9 @@
-import { IconMessage, IconPencil, IconTrash, IconX } from '@tabler/icons-react';
+import {
+  IconMessage,
+  IconPencil,
+  IconTrash,
+  IconTrashXFilled,
+} from '@tabler/icons-react';
 import {
   DragEvent,
   KeyboardEvent,
@@ -94,7 +99,7 @@ export const ConversationComponent = ({ conversation }: Props) => {
         <div className="flex w-full items-center gap-3 rounded-lg bg-[#343541]/90 p-3">
           <IconMessage size={18} />
           <input
-            className="mr-12 flex-1 overflow-hidden overflow-ellipsis border-neutral-400 bg-transparent text-left text-[12.5px] leading-3 text-white outline-none focus:border-neutral-100"
+            className="mr-4 flex-1 overflow-hidden overflow-ellipsis border-neutral-400 bg-transparent text-left text-[12.5px] leading-3 text-white outline-none focus:border-neutral-100"
             type="text"
             value={renameValue}
             onChange={(e) => setRenameValue(e.target.value)}
@@ -131,7 +136,7 @@ export const ConversationComponent = ({ conversation }: Props) => {
         selectedConversation?.id === conversation.id && (
           <div className="absolute right-1 z-10 flex text-gray-300">
             <SidebarActionButton handleClick={handleConfirm}>
-              <IconX size={18} />
+              <IconTrashXFilled size={18} />
             </SidebarActionButton>
           </div>
         )}

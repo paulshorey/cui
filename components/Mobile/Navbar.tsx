@@ -16,14 +16,13 @@ export const Navbar: FC<Props> = ({
     <nav className="flex w-full justify-between bg-[#202123] py-3 px-4">
       <div className="mr-4"></div>
 
-      <div className="max-w-[240px] overflow-hidden text-ellipsis whitespace-nowrap">
+      <div className="max-w-[240px] overflow-hidden text-ellipsis whitespace-nowrap pl-8">
         {selectedConversation.name}
       </div>
 
       <IconPlus
-        className="cursor-pointer hover:text-neutral-400"
+        className="cursor-pointer hover:text-neutral-400 mr-7"
         onClick={onNewConversation}
-        style={{ marginRight: '-0.5rem' }}
       />
     </nav>
   );

@@ -1,0 +1,10 @@
+.container {
+}
+.topButtons button {
+  height: 42px;
+}
+
+[data-side='left'] .topButtons {
+  justify-content: flex-end;
+  align-items: flex-end;
+}

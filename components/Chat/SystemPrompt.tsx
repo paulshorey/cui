@@ -40,9 +40,17 @@ export const SystemPrompt: FC<Props> = ({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const promptListRef = useRef<HTMLUListElement | null>(null);
 
-  const filteredPrompts = prompts.filter((prompt) =>
-    prompt.name.toLowerCase().includes(promptInputValue.toLowerCase()),
-  );
+  const filteredPrompts = (() => {
+    // const unique: Record<string, boolean> = {};
+    const filtered = prompts.filter((prompt) => {
+      // if (unique[prompt.name]) {
+      //   return false;
+      // }
+      // unique[prompt.name] = true;
+      return prompt.name.toLowerCase().includes(promptInputValue.toLowerCase());
+    });
+    return filtered;
+  })();
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
@@ -89,8 +97,13 @@ export const SystemPrompt: FC<Props> = ({
   };
 
   const updatePromptListVisibility = useCallback((text: string) => {
-    const match = text.match(/\/\w*$/);
+    if (!text) {
+      setShowPromptList(true);
+      setPromptInputValue('');
+      return;
+    }
 
+    const match = text.match(/\/\w*$/);
     if (match) {
       setShowPromptList(true);
       setPromptInputValue(match[0].slice(1));
@@ -215,6 +228,7 @@ export const SystemPrompt: FC<Props> = ({
         value={t(value) || ''}
         rows={1}
         onChange={handleChange}
+        onBlur={handleChange}
         onKeyDown={handleKeyDown}
       />
 

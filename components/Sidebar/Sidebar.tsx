@@ -8,6 +8,7 @@ import {
 } from './components/OpenCloseButton';
 
 import Search from '../Search';
+import styles from './Sidebar.module.css';
 
 interface Props<T> {
   isOpen: boolean;
@@ -53,13 +54,12 @@ const Sidebar = <T,>({
   const removeHighlight = (e: any) => {
     e.target.style.background = 'none';
   };
-
   return isOpen ? (
-    <div>
+    <div data-side={side} className={styles.container}>
       <div
-        className={`fixed top-0 ${side}-0 z-50 flex h-full w-[260px] flex-none flex-col space-y-2 bg-[#202123] p-2 text-[14px] transition-all sm:relative sm:top-0`}
+        className={`fixed top-0 ${side}-0 z-50 flex h-full w-[360px] flex-none flex-col space-y-2 bg-[#202123] p-2 text-[14px] transition-all sm:relative sm:top-0`}
       >
-        <div className="flex items-center">
+        <div className={'flex ' + styles.topButtons}>
           <button
             className="text-sidebar flex w-[190px] flex-shrink-0 cursor-pointer select-none items-center gap-3 rounded-md border border-white/20 p-3 text-white transition-colors duration-200 hover:bg-gray-500/10"
             onClick={() => {

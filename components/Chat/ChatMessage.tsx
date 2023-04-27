@@ -136,7 +136,12 @@ export const ChatMessage: FC<Props> = memo(
         }`}
         style={{ overflowWrap: 'anywhere' }}
       >
-        <div className="relative m-auto flex gap-0 p-4 text-base md:gap-0 md:py-6 lg:px-0 ">
+        <div
+          className={
+            'relative m-auto flex gap-1 p-4 text-base md:gap-0 md:py-6 lg:px-0 ' +
+            styles.prose
+          }
+        >
           <div className="min-w-[40px] text-right font-bold">
             {message.role === 'assistant' ? (
               <IconRobot size={30} />
@@ -145,11 +150,7 @@ export const ChatMessage: FC<Props> = memo(
             )}
           </div>
 
-          <div
-            className={
-              styles.prose + ' prose mt-[-2px] w-full dark:prose-invert'
-            }
-          >
+          <div>
             {message.role === 'user' ? (
               <div className="flex w-full">
                 {isEditing ? (

@@ -25,10 +25,15 @@ import { saveFolders } from '@/utils/app/folders';
 import { savePrompts } from '@/utils/app/prompts';
 import { getSettings } from '@/utils/app/settings';
 
-import { Conversation } from '@/types/chat';
+import { Conversation, Message } from '@/types/chat';
 import { KeyValuePair } from '@/types/data';
 import { FolderInterface, FolderType } from '@/types/folder';
-import { OpenAIModelID, OpenAIModels, fallbackModelID } from '@/types/openai';
+import {
+  OpenAIModel,
+  OpenAIModelID,
+  OpenAIModels,
+  fallbackModelID,
+} from '@/types/openai';
 import { Prompt } from '@/types/prompt';
 
 import { Chat } from '@/components/Chat/Chat';
@@ -205,6 +210,10 @@ const Home = ({
     saveConversations(updatedConversations);
 
     dispatch({ field: 'loading', value: false });
+
+    setTimeout(() => {
+      document.getElementById('textareaChatInput')?.focus();
+    }, 100);
   };
 
   const handleUpdateConversation = (
@@ -220,9 +229,28 @@ const Home = ({
       updatedConversation,
       conversations,
     );
+    console.log(
+      'pages/api/home handleUpdateConversation all conversations',
+      conversations,
+    );
 
     dispatch({ field: 'selectedConversation', value: single });
     dispatch({ field: 'conversations', value: all });
+
+    /*
+     * Automatically save system prompt - replace functionality of the right sidebar
+     */
+    const updatedPrompts = conversations.map((c) => ({
+      id: c.id,
+      name: c.prompt,
+      description: '',
+      content: c.prompt,
+      model: c.model,
+      folderId: c.folderId,
+    }));
+
+    dispatch({ field: 'prompts', value: updatedPrompts });
+    savePrompts(updatedPrompts);
   };
 
   // EFFECTS  --------------------------------------------
