@@ -65,6 +65,10 @@ const Sidebar = <T,>({
             onClick={() => {
               handleCreateItem();
               handleSearchTerm('');
+              if (side === 'left') {
+                toggleOpen();
+                document.getElementById('textareaChatInput')?.focus();
+              }
             }}
           >
             <IconPlus size={16} />
