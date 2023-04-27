@@ -18,9 +18,6 @@
   top: 0.67rem;
   display: inline-block;
   z-index: 10000;
-  @media (min-width: 768px) {
-    top: 1rem;
-  }
 }
 .closeButton[data-side='right'] {
   right: 0.35rem;
@@ -34,6 +31,14 @@
     left: 0.5rem;
   }
 }
+.closeButton {
+  @media (min-width: 768px) {
+    top: 0.7rem;
+  }
+}
 .openButton {
   z-index: 1;
+  @media (min-width: 768px) {
+    top: 0.3rem;
+  }
 }
