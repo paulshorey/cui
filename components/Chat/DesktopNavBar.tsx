@@ -34,7 +34,9 @@ export default function DesktopNavBar({
         </span>
         <span>
           <IconPlus
-            className="cursor-pointer hover:text-neutral-400 mr-8"
+            className={
+              'cursor-pointer hover:text-neutral-400 mr-8 ' + styles.plus
+            }
             onClick={handleNewConversation}
           />
         </span>
