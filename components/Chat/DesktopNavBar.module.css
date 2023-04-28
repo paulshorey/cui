@@ -31,4 +31,6 @@
   position: fixed;
   top: 0.5rem;
   right: 1rem;
+  background: hsl(235.38deg 11.11% 22.94% / 0.5);
+  z-index: 1000;
 }
