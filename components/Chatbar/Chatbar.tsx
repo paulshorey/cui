@@ -22,7 +22,6 @@ import { Conversations } from './components/Conversations';
 
 import Sidebar from '../Sidebar';
 import ChatbarContext from './Chatbar.context';
-import styles from './Chatbar.module.css';
 import { ChatbarInitialState, initialState } from './Chatbar.state';
 
 import { v4 as uuidv4 } from 'uuid';
@@ -108,6 +107,8 @@ export const Chatbar = () => {
     });
     homeDispatch({ field: 'folders', value: folders });
     homeDispatch({ field: 'prompts', value: prompts });
+
+    window.location.reload();
   };
 
   const handleClearConversations = () => {
@@ -116,7 +117,7 @@ export const Chatbar = () => {
         field: 'selectedConversation',
         value: {
           id: uuidv4(),
-          name: 'New conversation',
+          name: t('New Conversation'),
           messages: [],
           model: OpenAIModels[defaultModelId],
           prompt: DEFAULT_SYSTEM_PROMPT,
@@ -158,7 +159,7 @@ export const Chatbar = () => {
           field: 'selectedConversation',
           value: {
             id: uuidv4(),
-            name: 'New conversation',
+            name: t('New Conversation'),
             messages: [],
             model: OpenAIModels[defaultModelId],
             prompt: DEFAULT_SYSTEM_PROMPT,

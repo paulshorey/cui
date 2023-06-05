@@ -1,7 +1,8 @@
 import {
   IconBulbFilled,
+  IconCheck,
   IconTrash,
-  IconTrashXFilled,
+  IconX,
 } from '@tabler/icons-react';
 import {
   DragEvent,
@@ -99,12 +100,12 @@ export const PromptComponent = ({ prompt }: Props) => {
 
       {(isDeleting || isRenaming) && (
         <div className="absolute right-1 z-10 flex text-gray-300">
-          {/* <SidebarActionButton handleClick={handleDelete}>
-            <IconTrashXFilled size={18} />
-          </SidebarActionButton> */}
+          <SidebarActionButton handleClick={handleDelete}>
+            <IconCheck size={18} />
+          </SidebarActionButton>
 
           <SidebarActionButton handleClick={handleCancelDelete}>
-            <IconTrashXFilled size={18} />
+            <IconX size={18} />
           </SidebarActionButton>
         </div>
       )}

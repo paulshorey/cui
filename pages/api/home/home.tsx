@@ -25,15 +25,10 @@ import { saveFolders } from '@/utils/app/folders';
 import { savePrompts } from '@/utils/app/prompts';
 import { getSettings } from '@/utils/app/settings';
 
-import { Conversation, Message } from '@/types/chat';
+import { Conversation } from '@/types/chat';
 import { KeyValuePair } from '@/types/data';
 import { FolderInterface, FolderType } from '@/types/folder';
-import {
-  OpenAIModel,
-  OpenAIModelID,
-  OpenAIModels,
-  fallbackModelID,
-} from '@/types/openai';
+import { OpenAIModelID, OpenAIModels, fallbackModelID } from '@/types/openai';
 import { Prompt } from '@/types/prompt';
 
 import { Chat } from '@/components/Chat/Chat';
@@ -42,7 +37,6 @@ import { Navbar } from '@/components/Mobile/Navbar';
 import Promptbar from '@/components/Promptbar';
 
 import HomeContext from './home.context';
-import styles from './home.module.css';
 import { HomeInitialState, initialState } from './home.state';
 
 import { v4 as uuidv4 } from 'uuid';
@@ -189,7 +183,7 @@ const Home = ({
 
     const newConversation: Conversation = {
       id: uuidv4(),
-      name: `${t('New Conversation')}`,
+      name: t('New Conversation'),
       messages: [],
       model: lastConversation?.model || {
         id: OpenAIModels[defaultModelId].id,
@@ -211,10 +205,6 @@ const Home = ({
     saveConversations(updatedConversations);
 
     dispatch({ field: 'loading', value: false });
-
-    setTimeout(() => {
-      document.getElementById('textareaChatInput')?.focus();
-    }, 100);
   };
 
   const handleUpdateConversation = (
@@ -230,28 +220,9 @@ const Home = ({
       updatedConversation,
       conversations,
     );
-    console.log(
-      'pages/api/home handleUpdateConversation all conversations',
-      conversations,
-    );
 
     dispatch({ field: 'selectedConversation', value: single });
     dispatch({ field: 'conversations', value: all });
-
-    /*
-     * Automatically save system prompt - replace functionality of the right sidebar
-     */
-    const updatedPrompts = conversations.map((c) => ({
-      id: c.id,
-      name: c.prompt,
-      description: '',
-      content: c.prompt,
-      model: c.model,
-      folderId: c.folderId,
-    }));
-
-    dispatch({ field: 'prompts', value: updatedPrompts });
-    savePrompts(updatedPrompts);
   };
 
   // EFFECTS  --------------------------------------------
@@ -360,7 +331,7 @@ const Home = ({
         field: 'selectedConversation',
         value: {
           id: uuidv4(),
-          name: 'New conversation',
+          name: t('New Conversation'),
           messages: [],
           model: OpenAIModels[defaultModelId],
           prompt: DEFAULT_SYSTEM_PROMPT,
@@ -399,22 +370,21 @@ const Home = ({
       </Head>
       {selectedConversation && (
         <main
-          className={
-            `flex flex-col text-sm text-white dark:text-white ${lightMode} ` +
-            styles.layoutContainer
-          }
+          className={`flex h-screen w-screen flex-col text-sm text-white dark:text-white ${lightMode}`}
         >
-          <div className="relative top-0 w-full sm:hidden">
+          <div className="fixed top-0 w-full sm:hidden">
             <Navbar
               selectedConversation={selectedConversation}
               onNewConversation={handleNewConversation}
             />
           </div>
 
-          <div className={styles.layoutContent}>
+          <div className="flex h-full w-full pt-[48px] sm:pt-0">
             <Chatbar />
 
-            <Chat stopConversationRef={stopConversationRef} />
+            <div className="flex flex-1">
+              <Chat stopConversationRef={stopConversationRef} />
+            </div>
 
             <Promptbar />
           </div>

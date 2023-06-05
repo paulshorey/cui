@@ -8,6 +8,7 @@ export const updateConversation = (
     if (c.id === updatedConversation.id) {
       return updatedConversation;
     }
+
     return c;
   });
 

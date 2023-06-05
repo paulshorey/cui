@@ -1,13 +1,7 @@
 import { Message } from '@/types/chat';
 import { OpenAIModel } from '@/types/openai';
 
-import {
-  AZURE_DEPLOYMENT_ID,
-  OPENAI_API_HOST,
-  OPENAI_API_TYPE,
-  OPENAI_API_VERSION,
-  OPENAI_ORGANIZATION,
-} from '../app/const';
+import { AZURE_DEPLOYMENT_ID, OPENAI_API_HOST, OPENAI_API_TYPE, OPENAI_API_VERSION, OPENAI_ORGANIZATION } from '../app/const';
 
 import {
   ParsedEvent,
@@ -28,26 +22,14 @@ export class OpenAIError extends Error {
     this.code = code;
   }
 }
-type OpenAIStreamProps = {
-  model: OpenAIModel;
-  systemPrompt: string;
-  temperature: number;
-  key: string;
-  messages: Message[];
-  top_p?: number;
-  presence_penalty?: number;
-  frequency_penalty?: number;
-};
-export const OpenAIStream = async ({
-  model,
-  systemPrompt,
-  temperature,
-  key,
-  messages,
-  top_p,
-  presence_penalty,
-  frequency_penalty,
-}: OpenAIStreamProps) => {
+
+export const OpenAIStream = async (
+  model: OpenAIModel,
+  systemPrompt: string,
+  temperature : number,
+  key: string,
+  messages: Message[],
+) => {
   let url = `${OPENAI_API_HOST}/v1/chat/completions`;
   if (OPENAI_API_TYPE === 'azure') {
     url = `${OPENAI_API_HOST}/openai/deployments/${AZURE_DEPLOYMENT_ID}/chat/completions?api-version=${OPENAI_API_VERSION}`;
@@ -56,19 +38,18 @@ export const OpenAIStream = async ({
     headers: {
       'Content-Type': 'application/json',
       ...(OPENAI_API_TYPE === 'openai' && {
-        Authorization: `Bearer ${key ? key : process.env.OPENAI_API_KEY}`,
+        Authorization: `Bearer ${key ? key : process.env.OPENAI_API_KEY}`
       }),
       ...(OPENAI_API_TYPE === 'azure' && {
-        'api-key': `${key ? key : process.env.OPENAI_API_KEY}`,
+        'api-key': `${key ? key : process.env.OPENAI_API_KEY}`
       }),
-      ...(OPENAI_API_TYPE === 'openai' &&
-        OPENAI_ORGANIZATION && {
-          'OpenAI-Organization': OPENAI_ORGANIZATION,
-        }),
+      ...((OPENAI_API_TYPE === 'openai' && OPENAI_ORGANIZATION) && {
+        'OpenAI-Organization': OPENAI_ORGANIZATION,
+      }),
     },
     method: 'POST',
     body: JSON.stringify({
-      ...(OPENAI_API_TYPE === 'openai' && { model: model.id }),
+      ...(OPENAI_API_TYPE === 'openai' && {model: model.id}),
       messages: [
         {
           role: 'system',
@@ -77,12 +58,7 @@ export const OpenAIStream = async ({
         ...messages,
       ],
       max_tokens: 1000,
-      temperature: typeof temperature !== 'undefined' ? temperature : 0.5,
-      // top_p: typeof top_p !== 'undefined' ? top_p : 0.9,
-      // presence_penalty:
-      //   typeof presence_penalty !== 'undefined' ? presence_penalty : -0.1,
-      // frequency_penalty:
-      //   typeof frequency_penalty !== 'undefined' ? frequency_penalty : -0.1,
+      temperature: temperature,
       stream: true,
     }),
   });

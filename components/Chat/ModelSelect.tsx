@@ -3,7 +3,7 @@ import { useContext } from 'react';
 
 import { useTranslation } from 'next-i18next';
 
-import { OpenAIModel, OpenAIModelID } from '@/types/openai';
+import { OpenAIModel } from '@/types/openai';
 
 import HomeContext from '@/pages/api/home/home.context';
 
@@ -15,18 +15,6 @@ export const ModelSelect = () => {
     handleUpdateConversation,
     dispatch: homeDispatch,
   } = useContext(HomeContext);
-
-  // const has32KModel = models.find(
-  //   (model) => model.id === OpenAIModelID.GPT_4_32K,
-  // );
-  // if (!has32KModel) {
-  //   models.push({
-  //     id: OpenAIModelID.GPT_4_32K,
-  //     name: 'GPT-4-32K',
-  //     maxLength: 96000,
-  //     tokenLimit: 32000,
-  //   });
-  // }
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     selectedConversation &&
@@ -62,6 +50,16 @@ export const ModelSelect = () => {
             </option>
           ))}
         </select>
+      </div>
+      <div className="w-full mt-3 text-left text-neutral-700 dark:text-neutral-400 flex items-center">
+        <a
+          href="https://platform.openai.com/account/usage"
+          target="_blank"
+          className="flex items-center"
+        >
+          <IconExternalLink size={18} className={'inline mr-1'} />
+          {t('View Account Usage')}
+        </a>
       </div>
     </div>
   );
